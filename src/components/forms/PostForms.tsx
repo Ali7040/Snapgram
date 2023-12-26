@@ -87,7 +87,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         <FormField
           control={form.control}
           name="caption"
-          render={({ ...field }) => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel className="shad-form_label">Caption</FormLabel>
               <FormControl>
@@ -104,7 +104,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         <FormField
           control={form.control}
           name="file"
-          render={({ ...field }) => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel className="shad-form_label">Add Photos</FormLabel>
               <FormControl>
@@ -121,7 +121,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         <FormField
           control={form.control}
           name="location"
-          render={({ ...field }) => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel className="shad-form_label">Add Location</FormLabel>
               <FormControl>
@@ -135,7 +135,7 @@ const PostForm = ({ post, action }: PostFormProps) => {
         <FormField
           control={form.control}
           name="tags"
-          render={({ ...field }) => (
+          render={({ field }) => (
             <FormItem>
               <FormLabel className="shad-form_label">
                 Add Tags (separated by comma " , ")
