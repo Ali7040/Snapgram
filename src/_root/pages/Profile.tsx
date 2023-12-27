@@ -32,7 +32,7 @@ const Profile = () => {
   const { pathname } = useLocation();
   
   const [followers, setFollowers] = useState<number>(0);
-  const [following, setFollowing] = useState<number>(0);
+  const [following] = useState<number>(0);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   
 
@@ -45,9 +45,10 @@ const Profile = () => {
       setFollowers((prevFollowers) => prevFollowers + 1);
     }
     setIsFollowing((prevIsFollowing) => !prevIsFollowing);
-    setFollowing(following)
+    
   };
 
+  
 
   const { data: currentUser } = useGetUserById(id || "");
 
