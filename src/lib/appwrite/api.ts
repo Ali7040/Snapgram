@@ -17,7 +17,9 @@ export async function CreateUserAccount(user: INewUser) {
       user.name
     );
 
-    if (!newAccount) throw Error;
+    if (!newAccount) {
+      throw new Error('User account creation failed');
+    }
 
     const avatarUrl = avatars.getInitials(user.name);
 
@@ -31,10 +33,11 @@ export async function CreateUserAccount(user: INewUser) {
 
     return newUser;
   } catch (error) {
-    console.log(error);
+    console.error('Sign-up error:', error);
     return error;
   }
 }
+
 
 // ============================== SAVE USER TO DB
 export async function saveUserToDB(user: {
