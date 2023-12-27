@@ -35,7 +35,7 @@ const Profile = () => {
   const [following, setFollowing] = useState<number>(0);
   const [isFollowing, setIsFollowing] = useState<boolean>(false);
   
-  
+
 
 
   const updateFollowers = () => {
@@ -45,6 +45,7 @@ const Profile = () => {
       setFollowers((prevFollowers) => prevFollowers + 1);
     }
     setIsFollowing((prevIsFollowing) => !prevIsFollowing);
+    setFollowing(following)
   };
 
 
