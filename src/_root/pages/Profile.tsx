@@ -12,6 +12,7 @@ import { LikedPosts } from "@/_root/pages";
 import { useUserContext } from "@/context/AuthContext";
 import { useGetUserById } from "@/lib/react-query/queries";
 import { GridPostList, Loader } from "@/components/shared";
+import { useState } from "react";
 
 interface StabBlockProps {
   value: string | number;
@@ -29,6 +30,23 @@ const Profile = () => {
   const { id } = useParams();
   const { user } = useUserContext();
   const { pathname } = useLocation();
+  
+  const [followers, setFollowers] = useState<number>(0);
+  const [following, setFollowing] = useState<number>(0);
+  const [isFollowing, setIsFollowing] = useState<boolean>(false);
+  
+  
+
+
+  const updateFollowers = () => {
+    if (isFollowing) {
+      setFollowers((prevFollowers) => prevFollowers - 1);
+    } else {
+      setFollowers((prevFollowers) => prevFollowers + 1);
+    }
+    setIsFollowing((prevIsFollowing) => !prevIsFollowing);
+  };
+
 
   const { data: currentUser } = useGetUserById(id || "");
 
@@ -62,8 +80,8 @@ const Profile = () => {
 
             <div className="flex gap-8 mt-10 items-center justify-center xl:justify-start flex-wrap z-20">
               <StatBlock value={currentUser.posts.length} label="Posts" />
-              <StatBlock value={20} label="Followers" />
-              <StatBlock value={20} label="Following" />
+              <StatBlock value={followers} label="Followers" />
+              <StatBlock value={following} label="Following" />
             </div>
 
             <p className="small-medium md:base-medium text-center xl:text-left mt-7 max-w-screen-sm">
@@ -90,8 +108,8 @@ const Profile = () => {
               </Link>
             </div>
             <div className={`${user.id === id && "hidden"}`}>
-              <Button type="button" className="shad-button_primary px-8">
-                Follow
+              <Button type="button" className="shad-button_primary px-8" onClick={updateFollowers}>
+              {isFollowing ? 'Following' : 'Follow'}
               </Button>
             </div>
           </div>
