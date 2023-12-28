@@ -2,6 +2,7 @@ import { ID, Query } from "appwrite";
 
 import { appwriteConfig, account, databases, storage, avatars } from "./config";
 import { IUpdatePost, INewPost, INewUser, IUpdateUser } from "@/types";
+import { User } from "lucide-react";
 
 // ============================================================
 // AUTH
@@ -373,6 +374,26 @@ export async function likePost(postId: string, likesArray: string[]) {
   }
 }
 
+
+
+export async function followUser(User: string, followArray: string[]) {
+  try {
+    const updatedPost = await databases.updateDocument(
+      appwriteConfig.databaseId,
+      appwriteConfig.postCollectionId,
+      User,
+      {
+        following: followArray,
+      }
+    );
+
+    if (!updatedPost) throw Error;
+
+    return updatedPost;
+  } catch (error) {
+    console.log(error);
+  }
+}
 // ============================== SAVE POST
 export async function savePost(userId: string, postId: string) {
   try {
